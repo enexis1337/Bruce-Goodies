@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruce Goodies – Схемы</title>
-
+    <title>Bruce Goodies</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background: #0a0a0a;
             color: #fff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
         }
 
         header {
@@ -39,7 +43,11 @@
             display: inline-block;
         }
 
-        nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
         .nav-btn {
             background: transparent;
@@ -47,9 +55,11 @@
             padding: 0.8rem 1.5rem;
             border: 2px solid #2a2a2a;
             border-radius: 8px;
-            text-decoration: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             font-weight: 600;
-            transition: 0.3s;
+            text-decoration: none;
         }
 
         .nav-btn:hover, .nav-btn.active {
@@ -57,14 +67,48 @@
             background: oklch(62.7% .265 303.9 / 0.1);
         }
 
-        main { padding: 3rem 0; }
+        .btn {
+            background: oklch(62.7% .265 303.9);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: oklch(72% .265 303.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(186, 85, 211, 0.4);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
 
         .filter-bar {
             background: #1a1a1a;
             padding: 1.5rem;
             border-radius: 12px;
-            border: 1px solid #2a2a2a;
             margin-bottom: 2rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        .filter-label {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .device-filters {
@@ -78,13 +122,16 @@
             color: #fff;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            cursor: pointer;
             border: 2px solid transparent;
-            transition: 0.3s;
+            cursor: pointer;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
         }
 
-        .filter-chip:hover { border-color: oklch(62.7% .265 303.9); }
+        .filter-chip:hover {
+            border-color: oklch(62.7% .265 303.9);
+        }
+
         .filter-chip.active {
             background: oklch(62.7% .265 303.9);
             border-color: oklch(62.7% .265 303.9);
@@ -96,12 +143,12 @@
             gap: 2rem;
         }
 
-        .scheme-card {
+        .scheme-card { /* Изменено с theme-card на scheme-card */
             background: #1a1a1a;
-            border: 1px solid #2a2a2a;
             border-radius: 12px;
-            transition: 0.3s;
+            border: 1px solid #2a2a2a;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .scheme-card:hover {
@@ -110,19 +157,47 @@
             box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
         }
 
-        .scheme-preview {
+        .scheme-preview { /* Изменено с theme-preview на scheme-preview */
+            width: 100%;
             height: 200px;
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 3rem;
+            border-bottom: 1px solid #2a2a2a;
+            color: oklch(62.7% .265 303.9); /* Цвет иконки */
         }
 
-        .scheme-info { padding: 1.5rem; }
-        .scheme-info h3 { margin-bottom: 0.5rem; }
+        .scheme-info { /* Изменено с theme-info на scheme-info */
+            padding: 1.5rem;
+        }
 
-        .device-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .scheme-info h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .author {
+            color: #aaa; /* Изменено, чтобы автор выглядел менее акцентно */
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .device-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
 
         .device-tag {
             background: oklch(62.7% .265 303.9 / 0.2);
@@ -132,132 +207,172 @@
             font-size: 0.8rem;
         }
 
-        .btn {
-            background: oklch(62.7% .265 303.9);
-            border: none;
-            border-radius: 8px;
-            padding: 0.7rem 1.2rem;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: oklch(72% .265 303.9);
-            transform: translateY(-2px);
-        }
-
         footer {
-            margin-top: 3rem;
-            padding: 2rem 0;
+            background: #0a0a0a;
             text-align: center;
+            padding: 2rem 0;
             border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-
 <body>
-<header>
-    <div class="container">
-        <div class="logo">🛡️ Bruce Goodies</div>
-        <nav>
-            <a class="nav-btn" href="index.html">Главная</a>
-            <a class="nav-btn" href="themes.html">Темы</a>
-            <a class="nav-btn" href="scripts.html">Скрипты JS</a>
-            <a class="nav-btn active" href="schemes.html">Схемы</a>
-        </nav>
-    </div>
-</header>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn">Главная</a>
+                <a href="themes.html" class="nav-btn">Темы</a>
+                <a href="scripts.html" class="nav-btn">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn active">Схемы</a> </nav>
+        </div>
+    </header>
 
-<main>
-    <div class="container">
-        <h1>📐 Библиотека схем</h1>
+    <main>
+        <div class="container">
+            <h1>💡 Библиотека Схем</h1> <div class="filter-bar">
+                <label class="filter-label">Фильтр по устройствам:</label>
+                <div class="device-filters">
+                    <button class="filter-chip active" data-filter="all">Все</button>
+                    <button class="filter-chip" data-filter="cardputer">Cardputer</button>
+                    <button class="filter-chip" data-filter="stick-c-plus">Stick-C-Plus</button>
+                    <button class="filter-chip" data-filter="stick-c-plus2">Stick-C-Plus2</button>
+                    <button class="filter-chip" data-filter="core2">M5Stack Core2</button>
+                    <button class="filter-chip" data-filter="cores3">M5Stack CoreS3</button>
+                    <button class="filter-chip" data-filter="new-device">New Device</button>
+                </div>
+            </div>
 
-        <div class="filter-bar">
-            <label class="filter-label">Фильтр по устройствам:</label>
-            <div class="device-filters">
-                <button class="filter-chip active" data-filter="all">Все</button>
-                <button class="filter-chip" data-filter="esp32">ESP32</button>
-                <button class="filter-chip" data-filter="esp8266">ESP8266</button>
-                <button class="filter-chip" data-filter="stm32">STM32</button>
-                <button class="filter-chip" data-filter="m5stack">M5Stack</button>
+            <div class="grid" id="schemes-grid"> <div class="scheme-card" data-devices="cardputer">
+                    <div class="scheme-preview">🔌</div>
+                    <div class="scheme-info">
+                        <h3>Схема питания Cardputer</h3>
+                        <span class="author">Версия: v1.2, 2024</span>
+                        <p class="description">Подробная электрическая схема управления питанием и зарядки Cardputer.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Cardputer</span>
+                        </div>
+                        <button class="btn" onclick="openScheme('schemes/cardputer_power_v1.2.png')">Открыть схему</button>
+                    </div>
+                </div>
+
+                <div class="scheme-card" data-devices="cores3">
+                    <div class="scheme-preview">🔗</div>
+                    <div class="scheme-info">
+                        <h3>Распиновка USB-C CoreS3</h3>
+                        <span class="author">Версия: R3, 2023</span>
+                        <p class="description">Схема распиновки контактов USB-C для M5Stack CoreS3.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">M5Stack CoreS3</span>
+                        </div>
+                        <button class="btn" onclick="openScheme('schemes/cores3_usbc_pinout_r3.pdf')">Открыть схему</button>
+                    </div>
+                </div>
+
+                <div class="scheme-card" data-devices="stick-c-plus,stick-c-plus2">
+                    <div class="scheme-preview">🖼️</div>
+                    <div class="scheme-info">
+                        <h3>Подключение дисплея Stick-C</h3>
+                        <span class="author">Версия: A, 2022</span>
+                        <p class="description">Схема подключения экрана для Stick-C-Plus и Stick-C-Plus2.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Stick-C-Plus</span>
+                            <span class="device-tag">Stick-C-Plus2</span>
+                        </div>
+                        <button class="btn" onclick="openScheme('schemes/stick-c-display_wiring.jpg')">Открыть схему</button>
+                    </div>
+                </div>
+                
+                <div class="scheme-card" data-devices="core2,cores3">
+                    <div class="scheme-preview">📡</div>
+                    <div class="scheme-info">
+                        <h3>Схема I2C шины Core</h3>
+                        <span class="author">Версия: 1.0, 2024</span>
+                        <p class="description">Общая схема подключения устройств к I2C шине M5Stack Core2/CoreS3.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">M5Stack Core2</span>
+                            <span class="device-tag">M5Stack CoreS3</span>
+                        </div>
+                        <button class="btn" onclick="openScheme('schemes/core_i2c_bus.png')">Открыть схему</button>
+                    </div>
+                </div>
+
+                <div class="scheme-card" data-devices="new-device">
+                    <div class="scheme-preview">🆕</div>
+                    <div class="scheme-info">
+                        <h3>Блок-схема New Device</h3>
+                        <span class="author">Версия: 0.5 Beta</span>
+                        <p class="description">Высокоуровневая блок-схема нового устройства.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">New Device</span>
+                        </div>
+                        <button class="btn" onclick="openScheme('schemes/new_device_block_diagram.pdf')">Открыть схему</button>
+                    </div>
+                </div>
+                
             </div>
         </div>
+    </main>
 
-        <div class="grid" id="schemes-grid">
-
-            <!-- Заглушка 1 -->
-            <div class="scheme-card" data-devices="esp32,stm32">
-                <div class="scheme-preview">📄</div>
-                <div class="scheme-info">
-                    <h3>Схема питания ESP32</h3>
-                    <p class="description">Базовая схема питания и развязки ESP32.</p>
-                    <div class="device-tags">
-                        <span class="device-tag">ESP32</span>
-                        <span class="device-tag">STM32</span>
-                    </div>
-                    <button class="btn" onclick="openScheme('schemes/esp32/power-basic.png')">Открыть</button>
-                </div>
-            </div>
-
-            <!-- Заглушка 2 -->
-            <div class="scheme-card" data-devices="esp8266">
-                <div class="scheme-preview">📄</div>
-                <div class="scheme-info">
-                    <h3>Датчик температуры DS18B20</h3>
-                    <p class="description">Подключение DS18B20 к ESP8266.</p>
-                    <div class="device-tags">
-                        <span class="device-tag">ESP8266</span>
-                    </div>
-                    <button class="btn" onclick="openScheme('schemes/esp8266/ds18b20.png')">Открыть</button>
-                </div>
-            </div>
-
-            <!-- Заглушка 3 -->
-            <div class="scheme-card" data-devices="m5stack">
-                <div class="scheme-preview">📄</div>
-                <div class="scheme-info">
-                    <h3>Расклад GPIO M5Stack Core2</h3>
-                    <p class="description">Таблица доступных пинов и их режимов.</p>
-                    <div class="device-tags">
-                        <span class="device-tag">M5Stack</span>
-                    </div>
-                    <button class="btn" onclick="openScheme('schemes/m5stack/core2-gpio.png')">Открыть</button>
-                </div>
-            </div>
-
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах или с разрешения владельца</p>
         </div>
-    </div>
-</main>
+    </footer>
 
-<footer>
-    <div class="container">
-        <p>Bruce Goodies Repository | Образовательное использование</p>
-    </div>
-</footer>
-
-<script>
-    // Фильтр
-    document.querySelectorAll('[data-filter]').forEach(chip => {
-        chip.addEventListener('click', function() {
-            const filter = this.dataset.filter;
-
-            document.querySelectorAll('[data-filter]').forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
-
-            document.querySelectorAll('.scheme-card').forEach(card => {
-                const devices = card.dataset.devices;
-                card.style.display = (filter === 'all' || devices.includes(filter)) ? 'block' : 'none';
+    <script>
+        // Фильтрация схем по устройствам
+        document.querySelectorAll('[data-filter]').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                document.querySelectorAll('[data-filter]').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.scheme-card').forEach(card => { // .scheme-card
+                    const devices = card.dataset.devices;
+                    if (filter === 'all' || devices.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
             });
         });
-    });
 
-    function openScheme(path) {
-        const githubBase = "https://raw.githubusercontent.com/username/bruce-repository/main/";
-        window.open(githubBase + path, "_blank");
-    }
-</script>
-
+        // Функция для открытия схемы в новом окне
+        function openScheme(filepath) {
+            // URL к схемам. Предположим, что они находятся в папке 'schemes'
+            // и доступны по прямому URL, например, на GitHub Pages или CDN.
+            // Здесь используется относительный путь.
+            const schemeUrl = filepath; 
+            
+            // Открываем URL в новом окне/вкладке
+            window.open(schemeUrl, '_blank');
+        }
+        
+        // Для примера: предполагаемый базовый URL-адрес репозитория
+        // const githubBaseUrl = 'https://raw.githubusercontent.com/username/bruce-repository/main/';
+        
+        // Если вам нужен абсолютный путь к схеме, измените openScheme следующим образом:
+        /*
+        function openScheme(filepath) {
+            const githubBaseUrl = 'https://raw.githubusercontent.com/username/bruce-repository/main/';
+            const schemeUrl = githubBaseUrl + filepath; 
+            window.open(schemeUrl, '_blank');
+        }
+        */
+    </script>
 </body>
 </html>
