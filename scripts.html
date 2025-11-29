@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Goodies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid oklch(62.7% .265 303.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: oklch(62.7% .265 303.9);
+            background: oklch(62.7% .265 303.9 / 0.1);
+        }
+
+        .btn {
+            background: oklch(62.7% .265 303.9);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: oklch(72% .265 303.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(186, 85, 211, 0.4);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .script-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .script-card:hover {
+            border-color: oklch(62.7% .265 303.9);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
+        }
+
+        .script-card h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .author {
+            color: oklch(62.7% .265 303.9);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .script-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #2a2a2a;
+            margin-top: auto;
+        }
+
+        .script-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: oklch(62.7% .265 303.9 / 0.2);
+            color: oklch(62.7% .265 303.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn">Главная</a>
+                <a href="themes.html" class="nav-btn">Темы</a>
+                <a href="scripts.html" class="nav-btn active">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn">Схемы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>⚡ JavaScript скрипты</h1>
+
+            <div class="grid">
+                <div class="script-card">
+                    <h3>Auto Network Scanner</h3>
+                    <span class="author">by @security_tools</span>
+                    <p class="description">Автоматическое сканирование WiFi сетей с определением типа шифрования, силы сигнала и возможных уязвимостей. Поддержка экспорта результатов в JSON формат.</p>
+                    <div class="script-tags">
+                        <span class="tag">WiFi</span>
+                        <span class="tag">Сканирование</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/auto-network-scanner.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>RF Signal Analyzer</h3>
+                    <span class="author">by @rf_expert</span>
+                    <p class="description">Анализ радиочастотных сигналов с построением спектрограмм и определением протоколов передачи данных. Визуализация в реальном времени.</p>
+                    <div class="script-tags">
+                        <span class="tag">RF</span>
+                        <span class="tag">Анализ</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/rf-signal-analyzer.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>NFC Clone Tool</h3>
+                    <span class="author">by @nfc_master</span>
+                    <p class="description">Инструмент для чтения и клонирования NFC меток. Поддержка различных типов карт и меток: MIFARE, NTAG, FeliCa. Функция эмуляции меток.</p>
+                    <div class="script-tags">
+                        <span class="tag">NFC</span>
+                        <span class="tag">Клонирование</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/nfc-clone-tool.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>Bluetooth Sniffer</h3>
+                    <span class="author">by @bt_hacker</span>
+                    <p class="description">Сканирование Bluetooth устройств с логированием MAC адресов, имён устройств и уровня сигнала. Пассивный режим для незаметного мониторинга.</p>
+                    <div class="script-tags">
+                        <span class="tag">Bluetooth</span>
+                        <span class="tag">Мониторинг</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/bluetooth-sniffer.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>Data Logger Pro</h3>
+                    <span class="author">by @logger_dev</span>
+                    <p class="description">Профессиональный логгер данных с поддержкой множества источников. Экспорт в различные форматы: CSV, JSON, XML. Настраиваемые интервалы записи.</p>
+                    <div class="script-tags">
+                        <span class="tag">Логирование</span>
+                        <span class="tag">Данные</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/data-logger-pro.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>Quick Pentest Suite</h3>
+                    <span class="author">by @pentest_tools</span>
+                    <p class="description">Набор быстрых тестов для проверки безопасности: портсканирование, проверка шифрования, анализ трафика. Автоматическая генерация отчётов.</p>
+                    <div class="script-tags">
+                        <span class="tag">Пентест</span>
+                        <span class="tag">Безопасность</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/quick-pentest-suite.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>Deauth Attack Tool</h3>
+                    <span class="author">by @wifi_warrior</span>
+                    <p class="description">Инструмент для тестирования устойчивости WiFi сетей к deauth атакам. Поддержка выбора конкретных клиентов или массовая деаутентификация.</p>
+                    <div class="script-tags">
+                        <span class="tag">WiFi</span>
+                        <span class="tag">Атака</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/deauth-attack-tool.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>RFID Dump Reader</h3>
+                    <span class="author">by @rfid_pro</span>
+                    <p class="description">Чтение и анализ дампов RFID карт. Расшифровка данных, извлечение информации, конвертация в читаемый формат. Поддержка EM4100, HID.</p>
+                    <div class="script-tags">
+                        <span class="tag">RFID</span>
+                        <span class="tag">Чтение</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/rfid-dump-reader.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>GPS Tracker Logger</h3>
+                    <span class="author">by @gps_dev</span>
+                    <p class="description">Логирование GPS координат с временными метками. Экспорт маршрутов в GPX формат. Расчёт пройденного расстояния и скорости.</p>
+                    <div class="script-tags">
+                        <span class="tag">GPS</span>
+                        <span class="tag">Трекинг</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/gps-tracker-logger.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>IR Remote Capture</h3>
+                    <span class="author">by @ir_specialist</span>
+                    <p class="description">Захват и воспроизведение инфракрасных сигналов. База данных популярных пультов. Возможность редактирования и создания собственных команд.</p>
+                    <div class="script-tags">
+                        <span class="tag">IR</span>
+                        <span class="tag">Пульты</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/ir-remote-capture.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>SubGHz Analyzer</h3>
+                    <span class="author">by @subghz_master</span>
+                    <p class="description">Анализ субгигагерцовых частот. Захват сигналов пультов, датчиков, брелоков. Декодирование протоколов: KeeLoq, Princeton, Nice.</p>
+                    <div class="script-tags">
+                        <span class="tag">SubGHz</span>
+                        <span class="tag">433MHz</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/subghz-analyzer.js')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="script-card">
+                    <h3>BadUSB Generator</h3>
+                    <span class="author">by @usb_ninja</span>
+                    <p class="description">Генератор BadUSB скриптов для тестирования. Библиотека готовых payload'ов. Поддержка Ducky Script синтаксиса. Кросс-платформенные скрипты.</p>
+                    <div class="script-tags">
+                        <span class="tag">BadUSB</span>
+                        <span class="tag">HID</span>
+                    </div>
+                    <div class="script-meta">
+                        <button class="btn" onclick="downloadFromGitHub('scripts/badusb-generator.js')">Скачать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies Repository | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах или с разрешения владельца</p>
+        </div>
+    </footer>
+
+    <script>
+        function downloadFromGitHub(filepath) {
+            const githubRepo = 'https://raw.githubusercontent.com/username/bruce-repository/main/';
+            const downloadUrl = githubRepo + filepath;
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filepath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`Загрузка: ${filepath}\n\nФайл будет загружен с GitHub.\nЕсли загрузка не началась, проверьте URL репозитория в настройках.`);
+        }
+    </script>
+</body>
+</html>

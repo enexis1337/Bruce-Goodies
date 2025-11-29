@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Goodies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid oklch(62.7% .265 303.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: oklch(62.7% .265 303.9);
+            background: oklch(62.7% .265 303.9 / 0.1);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: oklch(62.7% .265 303.9);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: oklch(62.7% .265 303.9);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn active">Главная</a>
+                <a href="themes.html" class="nav-btn">Темы</a>
+                <a href="scripts.html" class="nav-btn">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn">Схемы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="hero">
+                <h1>Bruce Goodies Repository</h1>
+                <p>Централизованное хранилище тем, скриптов и схем для пентестерской прошивки Bruce. Настройте свое устройство под свои нужды и расширьте его возможности.</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Темы оформления</h3>
+                    <p>Персонализируйте интерфейс Bruce с помощью готовых тем для различных устройств и размеров экранов</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>JavaScript скрипты</h3>
+                    <p>Расширьте функционал прошивки с помощью готовых скриптов для автоматизации задач</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h3>Схемы устройств</h3>
+                    <p>Найдите схемы подключения и модификации для вашего конкретного устройства</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Open Source</h3>
+                    <p>Все материалы загружаются напрямую с GitHub - безопасно, прозрачно, с открытым исходным кодом</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Мультиустройство</h3>
+                    <p>Поддержка множества устройств с различными размерами экранов и характеристиками</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Для обучения</h3>
+                    <p>Все инструменты предназначены для легального тестирования безопасности и образовательных целей</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies Repository | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах или с разрешения владельца</p>
+        </div>
+    </footer>
+</body>
+</html>

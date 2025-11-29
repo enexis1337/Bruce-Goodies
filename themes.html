@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Goodies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid oklch(62.7% .265 303.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: oklch(62.7% .265 303.9);
+            background: oklch(62.7% .265 303.9 / 0.1);
+        }
+
+        .btn {
+            background: oklch(62.7% .265 303.9);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: oklch(72% .265 303.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(186, 85, 211, 0.4);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .filter-bar {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        .filter-label {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .device-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-chip:hover {
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .filter-chip.active {
+            background: oklch(62.7% .265 303.9);
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .theme-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .theme-card:hover {
+            border-color: oklch(62.7% .265 303.9);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
+        }
+
+        .theme-preview {
+            width: 100%;
+            height: 200px;
+            background: #111;
+            border-bottom: 1px solid #2a2a2a;
+            overflow: hidden;
+        }
+
+        .theme-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .theme-info {
+            padding: 1.5rem;
+        }
+
+        .theme-info h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .author {
+            color: oklch(62.7% .265 303.9);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .device-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .device-tag {
+            background: oklch(62.7% .265 303.9 / 0.2);
+            color: oklch(62.7% .265 303.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn">Главная</a>
+                <a href="themes.html" class="nav-btn active">Темы</a>
+                <a href="scripts.html" class="nav-btn">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn">Схемы</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>🎨 Темы оформления</h1>
+
+            <div class="filter-bar">
+                <label class="filter-label">Фильтр по устройствам:</label>
+                <div class="device-filters">
+                    <button class="filter-chip active" data-filter="all">Все</button>
+                    <button class="filter-chip" data-filter="stick">StickCPlus</button>
+                    <button class="filter-chip" data-filter="cardputer">Cardputer</button>
+                    <button class="filter-chip" data-filter="tembed">T-Embed</button>
+                    <button class="filter-chip" data-filter="cyd">CYD</button>
+                    <button class="filter-chip" data-filter="core">Core</button>
+                    <button class="filter-chip" data-filter="brucepcb">Smoochiee</button>
+                    <button class="filter-chip" data-filter="tdeck">T-Deck</button>
+                    <button class="filter-chip" data-filter="tlorapager">T-LoRa-Pager</button>
+                </div>
+            </div>
+
+            <div class="grid" id="themes-grid">
+
+                <div class="theme-card" data-devices="cardputer,stickcplus">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/dark-purple-pro.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Dark Purple Pro</h3>
+                        <span class="author">by @cyberpunk_dev</span>
+                        <p class="description">Профессиональная тёмная тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">StickC Plus</span>
+                            <span class="device-tag">Cardputer</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/dark-purple-pro.json')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="theme-card" data-devices="tembed,brucepcb">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/neon-cyberpunk.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Neon Cyberpunk</h3>
+                        <span class="author">by @neon_master</span>
+                        <p class="description">Яркая неоновая тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">T-Embed</span>
+                            <span class="device-tag">Smoochiee</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/neon-cyberpunk.json')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="theme-card" data-devices="cardputer,new-device">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/minimal-focus.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Minimal Focus</h3>
+                        <span class="author">by @minimalist_ui</span>
+                        <p class="description">Минималистичная тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Cardputer</span>
+                            <span class="device-tag">New Device</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/minimal-focus.json')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="theme-card" data-devices="stick-c-plus2,cores3">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/fire-red.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Fire Red</h3>
+                        <span class="author">by @red_theme_studio</span>
+                        <p class="description">Красно-чёрная тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Stick-C-Plus2</span>
+                            <span class="device-tag">M5Stack CoreS3</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/fire-red.json')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="theme-card" data-devices="cardputer,core2,cores3">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/ocean-blue.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Ocean Blue</h3>
+                        <span class="author">by @aqua_designs</span>
+                        <p class="description">Синяя спокойная тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Cardputer</span>
+                            <span class="device-tag">M5Stack Core2</span>
+                            <span class="device-tag">M5Stack CoreS3</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/ocean-blue.json')">Скачать</button>
+                    </div>
+                </div>
+
+                <div class="theme-card" data-devices="stick-c-plus,stick-c-plus2,new-device">
+                    <div class="theme-preview">
+                        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/previews/forest-green.png" alt="">
+                    </div>
+                    <div class="theme-info">
+                        <h3>Forest Green</h3>
+                        <span class="author">by @nature_themes</span>
+                        <p class="description">Зелёная тема.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Stick-C-Plus</span>
+                            <span class="device-tag">Stick-C-Plus2</span>
+                            <span class="device-tag">New Device</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('themes/forest-green.json')">Скачать</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies Repository | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('[data-filter]').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                document.querySelectorAll('[data-filter]').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+
+                document.querySelectorAll('.theme-card').forEach(card => {
+                    const devices = card.dataset.devices;
+                    card.style.display = (filter === 'all' || devices.includes(filter)) ? 'block' : 'none';
+                });
+            });
+        });
+
+        function downloadFromGitHub(filepath) {
+            const githubRepo = 'https://raw.githubusercontent.com/USERNAME/REPO/main/';
+            const downloadUrl = githubRepo + filepath;
+
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filepath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
