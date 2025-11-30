@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Goodies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid oklch(62.7% .265 303.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: oklch(62.7% .265 303.9);
+            background: oklch(62.7% .265 303.9 / 0.1);
+        }
+
+        .btn {
+            background: oklch(62.7% .265 303.9);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: oklch(72% .265 303.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(186, 85, 211, 0.4);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .filter-section {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        .filter-row {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-chip:hover {
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .filter-chip.active {
+            background: oklch(62.7% .265 303.9);
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .file-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-card:hover {
+            border-color: oklch(62.7% .265 303.9);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
+        }
+
+        .file-card h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .author {
+            color: oklch(62.7% .265 303.9);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+
+        .tags-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .device-tag {
+            background: oklch(62.7% .265 303.9 / 0.2);
+            color: oklch(62.7% .265 303.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .category-tag {
+            background: #2a2a2a;
+            color: #aaa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .file-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .file-size {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn">Главная</a>
+                <a href="themes.html" class="nav-btn">Темы</a>
+                <a href="scripts.html" class="nav-btn">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn">Схемы</a>
+                <a href="files.html" class="nav-btn">Файлы</a>
+                <a href="boot-images.html" class="nav-btn active">Boot картинки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>📦 Файлы для устройств</h1>
+
+            <div class="filter-section">
+                <div class="filter-row">
+                    <label class="filter-label">Фильтр по устройствам:</label>
+                    <div class="filters">
+                        <button class="filter-chip active" data-filter-device="all">Все устройства</button>
+                        <button class="filter-chip" data-filter-device="cardputer">Cardputer</button>
+                        <button class="filter-chip" data-filter-device="stick-c-plus">Stick-C-Plus</button>
+                        <button class="filter-chip" data-filter-device="stick-c-plus2">Stick-C-Plus2</button>
+                        <button class="filter-chip" data-filter-device="core2">M5Stack Core2</button>
+                        <button class="filter-chip" data-filter-device="cores3">M5Stack CoreS3</button>
+                        <button class="filter-chip" data-filter-device="new-device">New Device</button>
+                    </div>
+                </div>
+
+                <div class="filter-row">
+                    <label class="filter-label">Фильтр по сфере использования:</label>
+                    <div class="filters">
+                        <button class="filter-chip active" data-filter-category="all">Все категории</button>
+                        <button class="filter-chip" data-filter-category="wifi">WiFi</button>
+                        <button class="filter-chip" data-filter-category="ble">BLE</button>
+                        <button class="filter-chip" data-filter-category="subghz">SubGhz</button>
+                        <button class="filter-chip" data-filter-category="ir">IR</button>
+                        <button class="filter-chip" data-filter-category="nfc">NFC</button>
+                        <button class="filter-chip" data-filter-category="badusb">BadUSB</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid" id="files-grid">
+                <!-- Пример карточки - копируйте эту структуру для добавления новых файлов -->
+                <div class="file-card" data-device="cardputer,stick-c-plus" data-category="wifi">
+                    <h3>WiFi Handshakes Collection</h3>
+                    <span class="author">by @wifi_hunter</span>
+                    <p class="description">Коллекция WiFi handshakes для тестирования и обучения. Включает примеры различных типов шифрования WPA/WPA2/WPA3.</p>
+                    <div class="tags-container">
+                        <span class="device-tag">Cardputer</span>
+                        <span class="device-tag">Stick-C-Plus</span>
+                        <span class="category-tag">WiFi</span>
+                    </div>
+                    <div class="file-info">
+                        <span class="file-size">📦 2.4 MB</span>
+                        <button class="btn" onclick="downloadFromGitHub('files/wifi-handshakes.zip')">Скачать</button>
+                    </div>
+                </div>
+
+                <!-- Добавляйте новые карточки здесь, копируя структуру выше -->
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах или с разрешения владельца</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentDeviceFilter = 'all';
+        let currentCategoryFilter = 'all';
+
+        // Фильтрация по устройствам
+        document.querySelectorAll('[data-filter-device]').forEach(chip => {
+            chip.addEventListener('click', function() {
+                currentDeviceFilter = this.dataset.filterDevice;
+                
+                document.querySelectorAll('[data-filter-device]').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                applyFilters();
+            });
+        });
+
+        // Фильтрация по категориям
+        document.querySelectorAll('[data-filter-category]').forEach(chip => {
+            chip.addEventListener('click', function() {
+                currentCategoryFilter = this.dataset.filterCategory;
+                
+                document.querySelectorAll('[data-filter-category]').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                applyFilters();
+            });
+        });
+
+        // Применение фильтров
+        function applyFilters() {
+            document.querySelectorAll('.file-card').forEach(card => {
+                const cardDevices = card.dataset.device;
+                const cardCategories = card.dataset.category;
+                
+                const deviceMatch = currentDeviceFilter === 'all' || cardDevices.includes(currentDeviceFilter);
+                const categoryMatch = currentCategoryFilter === 'all' || cardCategories.includes(currentCategoryFilter);
+                
+                if (deviceMatch && categoryMatch) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function downloadFromGitHub(filepath) {
+            const githubRepo = 'https://raw.githubusercontent.com/username/bruce-repository/main/';
+            const downloadUrl = githubRepo + filepath;
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filepath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`Загрузка: ${filepath}\n\nФайл будет загружен с GitHub.\nЕсли загрузка не началась, проверьте URL репозитория.`);
+        }
+    </script>
+</body>
+</html>

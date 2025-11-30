@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruce Goodies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 2rem 0;
+            border-bottom: 2px solid oklch(62.7% .265 303.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, oklch(62.7% .265 303.9), oklch(72% .265 303.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2a2a2a;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: oklch(62.7% .265 303.9);
+            background: oklch(62.7% .265 303.9 / 0.1);
+        }
+
+        .btn {
+            background: oklch(62.7% .265 303.9);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: oklch(72% .265 303.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(186, 85, 211, 0.4);
+        }
+
+        main {
+            padding: 3rem 0;
+            min-height: 60vh;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .filter-bar {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        .filter-label {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .device-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            background: #2a2a2a;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-chip:hover {
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .filter-chip.active {
+            background: oklch(62.7% .265 303.9);
+            border-color: oklch(62.7% .265 303.9);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .boot-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .boot-card:hover {
+            border-color: oklch(62.7% .265 303.9);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(186, 85, 211, 0.2);
+        }
+
+        .boot-preview {
+            width: 100%;
+            height: 200px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .boot-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .boot-preview-placeholder {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .boot-info {
+            padding: 1.5rem;
+        }
+
+        .boot-info h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .author {
+            color: oklch(62.7% .265 303.9);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .description {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .device-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .device-tag {
+            background: oklch(62.7% .265 303.9 / 0.2);
+            color: oklch(62.7% .265 303.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .resolution-tag {
+            background: #2a2a2a;
+            color: #aaa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🛡️ Bruce Goodies</div>
+            <nav>
+                <a href="index.html" class="nav-btn">Главная</a>
+                <a href="themes.html" class="nav-btn">Темы</a>
+                <a href="scripts.html" class="nav-btn">Скрипты JS</a>
+                <a href="schemes.html" class="nav-btn">Схемы</a>
+                <a href="files.html" class="nav-btn">Файлы</a>
+                <a href="boot-images.html" class="nav-btn active">Boot картинки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>🖼️ Boot картинки</h1>
+
+            <div class="filter-bar">
+                <label class="filter-label">Фильтр по устройствам:</label>
+                <div class="device-filters">
+                    <button class="filter-chip active" data-filter="all">Все устройства</button>
+                    <button class="filter-chip" data-filter="cardputer">Cardputer</button>
+                    <button class="filter-chip" data-filter="stick-c-plus">Stick-C-Plus</button>
+                    <button class="filter-chip" data-filter="stick-c-plus2">Stick-C-Plus2</button>
+                    <button class="filter-chip" data-filter="core2">M5Stack Core2</button>
+                    <button class="filter-chip" data-filter="cores3">M5Stack CoreS3</button>
+                    <button class="filter-chip" data-filter="new-device">New Device</button>
+                </div>
+            </div>
+
+            <div class="grid" id="boot-images-grid">
+                <!-- Пример карточки - копируйте эту структуру для добавления новых boot картинок -->
+                <div class="boot-card" data-devices="cardputer,stick-c-plus">
+                    <div class="boot-preview">
+                        <!-- Вставьте сюда img с вашей boot картинкой -->
+                        <img src="https://via.placeholder.com/320x200/1a1a1a/ba55d3?text=Boot+Logo" alt="Cyberpunk Boot Logo">
+                        <!-- Или используйте placeholder если нет изображения -->
+                        <!-- <div class="boot-preview-placeholder">🖼️</div> -->
+                    </div>
+                    <div class="boot-info">
+                        <h3>Cyberpunk Boot Logo</h3>
+                        <span class="author">by @cyber_artist</span>
+                        <p class="description">Стильная boot картинка в стиле киберпанк с неоновыми элементами. Идеально подходит для тёмных тем оформления.</p>
+                        <div class="device-tags">
+                            <span class="device-tag">Cardputer</span>
+                            <span class="device-tag">Stick-C-Plus</span>
+                            <span class="resolution-tag">240x135</span>
+                        </div>
+                        <button class="btn" onclick="downloadFromGitHub('boot-images/cyberpunk-boot.bin')">Скачать</button>
+                    </div>
+                </div>
+
+                <!-- Добавляйте новые карточки здесь, копируя структуру выше -->
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Bruce Goodies | Для образовательных и легальных целей тестирования безопасности</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">⚠️ Используйте только на собственных устройствах или с разрешения владельца</p>
+        </div>
+    </footer>
+
+    <script>
+        // Фильтрация по устройствам
+        document.querySelectorAll('[data-filter]').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                document.querySelectorAll('[data-filter]').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.boot-card').forEach(card => {
+                    const devices = card.dataset.devices;
+                    if (filter === 'all' || devices.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        function downloadFromGitHub(filepath) {
+            const githubRepo = 'https://raw.githubusercontent.com/username/bruce-repository/main/';
+            const downloadUrl = githubRepo + filepath;
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = filepath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(`Загрузка: ${filepath}\n\nФайл будет загружен с GitHub.`);
+        }
+    </script>
+</body>
+</html>
