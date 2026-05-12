@@ -1,12 +1,13 @@
 {
-  "name": "Example Theme",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "description_ru": "Съешь ещё этих мягких французских булок, да выпей чаю.",
-  "author": "enexis",
+  "name": "",
+  "description": "",
+  "description_ru": "",
+  "author": "",
   "version": "v1.0",
-  "device": "Core",
-  "screenshot": "https://placehold.co/400x240/1a1000/ffaa00?text=Placeholder",
-  "download_url": "https://github.com/pr3y/Bruce/releases",
-  "date": "2024-10-08",
-  "tags": ["retro", "amber", "classic", "warm"]
+  "device": ["StickC", "Cardputer", "T-Embed", "Smoochiee", "RF-Reaper", "CYD", "Core", "T-Deck", "T-LoRa Pager"],
+  "category": "Theme",
+  "screenshot": "",
+  "download_url": "",
+  "date": "1970-01-01",
+  "tags": [""]
 }

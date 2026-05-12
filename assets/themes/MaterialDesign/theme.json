@@ -1,0 +1,13 @@
+{
+  "name": "Material Design",
+  "description": "Material Design theme for Bruce",
+  "description_ru": "Тема Material Design для Bruce",
+  "author": "timenetwork",
+  "version": "v1.0",
+  "device": ["CYD", "Core", "T-Deck"],
+  "category": "Theme",
+  "screenshot": "https://raw.githubusercontent.com/enexis1337/Bruce-Goodies/refs/heads/main/assets/themes/MaterialDesign/materialdesing.png",
+  "download_url": "https://github.com/enexis1337/Bruce-Goodies/raw/refs/heads/main/assets/themes/MaterialDesign/materialdesign.zip",
+  "date": "2025-07-31",
+  "tags": ["Modern"]
+}

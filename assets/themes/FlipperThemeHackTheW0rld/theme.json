@@ -1,0 +1,13 @@
+{
+  "name": "Flipper Color",
+  "description": "Flipper Colorful Theme",
+  "description_ru": "Цветная тема как на Flipper",
+  "author": "MrHacker",
+  "version": "v1.0",
+  "device": ["T-Embed", "Smoochiee", "RF-Reaper"],
+  "category": "Theme",
+  "screenshot": "https://raw.githubusercontent.com/enexis1337/Bruce-Goodies/refs/heads/main/assets/themes/FlipperThemeHackTheW0rld/flipper_fork_theme.png",
+  "download_url": "https://github.com/enexis1337/Bruce-Goodies/raw/refs/heads/main/assets/themes/FlipperThemeHackTheW0rld/Flipper_Dolphin_theme_hackThew0rld.zip",
+  "date": "2025-07-31",
+  "tags": ["Flipper-like"]
+}

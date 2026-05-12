@@ -51,17 +51,19 @@ header{position:sticky;top:0;z-index:100;background:rgba(13,13,18,.93);backdrop-
 .main{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:24px 2rem 5rem;display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start}
 
 /* SIDEBAR */
-.sidebar{position:sticky;top:82px;background:var(--panel);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.sidebar{position:sticky;top:82px;background:var(--panel);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;max-height:calc(100vh - 100px);overflow-y:auto}
 .sb-hdr{padding:13px 16px;border-bottom:1px solid var(--bdr);font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--pa);text-transform:uppercase;letter-spacing:.16em}
-.dev-list{padding:8px}
-.dev-btn{width:100%;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;border:none;background:transparent;color:var(--gt);font-family:'Rajdhani',sans-serif;font-size:.93rem;font-weight:500;cursor:pointer;transition:all .17s;text-align:left;position:relative}
-.dev-btn:hover{background:rgba(124,58,237,.12);color:var(--wh)}
-.dev-btn.on{background:rgba(124,58,237,.2);color:var(--wh);border:1px solid rgba(124,58,237,.35)}
-.dev-btn.on::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:3px;background:var(--pb);border-radius:0 2px 2px 0}
-.dev-ico{width:27px;height:27px;background:var(--card);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:1px solid var(--bdr)}
-.dev-btn.on .dev-ico{background:var(--pd);border-color:var(--pb)}
-.dev-cnt{margin-left:auto;background:var(--gd);color:var(--gl);font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:2px 7px;border-radius:10px;flex-shrink:0}
-.dev-btn.on .dev-cnt{background:var(--pd);color:var(--pa)}
+.sb-section{border-bottom:1px solid var(--bdr)}
+.sb-section:last-child{border-bottom:none}
+.dev-list,.tag-list{padding:8px}
+.dev-btn,.tag-btn{width:100%;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;border:none;background:transparent;color:var(--gt);font-family:'Rajdhani',sans-serif;font-size:.93rem;font-weight:500;cursor:pointer;transition:all .17s;text-align:left;position:relative}
+.dev-btn:hover,.tag-btn:hover{background:rgba(124,58,237,.12);color:var(--wh)}
+.dev-btn.on,.tag-btn.on{background:rgba(124,58,237,.2);color:var(--wh);border:1px solid rgba(124,58,237,.35)}
+.dev-btn.on::before,.tag-btn.on::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:3px;background:var(--pb);border-radius:0 2px 2px 0}
+.dev-ico,.tag-ico{width:27px;height:27px;background:var(--card);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:1px solid var(--bdr)}
+.dev-btn.on .dev-ico,.tag-btn.on .tag-ico{background:var(--pd);border-color:var(--pb)}
+.dev-cnt,.tag-cnt{margin-left:auto;background:var(--gd);color:var(--gl);font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:2px 7px;border-radius:10px;flex-shrink:0}
+.dev-btn.on .dev-cnt,.tag-btn.on .tag-cnt{background:var(--pd);color:var(--pa)}
 
 /* CONTENT */
 .content{min-width:0}
@@ -166,8 +168,14 @@ footer a:hover{color:var(--pl)}
 
 <div class="main">
   <aside class="sidebar">
-    <div class="sb-hdr" data-i18n="filter_dev">// DEVICE</div>
-    <div class="dev-list" id="devList"></div>
+    <div class="sb-section">
+      <div class="sb-hdr" data-i18n="filter_dev">// DEVICE</div>
+      <div class="dev-list" id="devList"></div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-hdr" data-i18n="filter_cat">// CATEGORY</div>
+      <div class="tag-list" id="tagList"></div>
+    </div>
   </aside>
   <div class="content">
     <div class="c-hdr">
@@ -206,6 +214,7 @@ const TR = {
     hero_desc:"Community themes, schemes, SD files and boot animations for Bruce firmware devices",
     s_themes:"Themes", s_devices:"Devices", s_authors:"Authors",
     filter_dev:"// DEVICE", all_dev:"All Devices",
+    filter_cat:"// CATEGORY", all_cat:"All Categories",
     sort_new:"Newest", sort_old:"Oldest", sort_az:"Name A–Z",
     no_themes:"No themes found", no_hint:"Try a different device filter.",
     download:"Download",
@@ -220,6 +229,7 @@ const TR = {
     hero_desc:"Темы, схемы, SD-файлы и анимации загрузки от сообщества для устройств на прошивке Bruce",
     s_themes:"Тем", s_devices:"Устройств", s_authors:"Авторов",
     filter_dev:"// УСТРОЙСТВО", all_dev:"Все устройства",
+    filter_cat:"// КАТЕГОРИЯ", all_cat:"Все категории",
     sort_new:"Сначала новые", sort_old:"Сначала старые", sort_az:"По имени А–Я",
     no_themes:"Темы не найдены", no_hint:"Попробуйте другой фильтр устройства.",
     download:"Скачать",
@@ -268,12 +278,23 @@ const DEVICES = [
   {id:"RF-Reaper", icon:"📶", label:"RF Reaper"},
 ];
 
-let activeDev = "all", searchQ = "";
+const CATEGORIES = [
+  {id:"all",    icon:"📦", label:"All Categories"},
+  {id:"Theme",  icon:"🎨", label:"Theme"},
+  {id:"Scheme", icon:"🎭", label:"Scheme"},
+  {id:"Files",  icon:"📁", label:"Files"},
+  {id:"Script", icon:"⚙️", label:"Script"},
+];
+
+let activeDev = "all", activeTag = "all", searchQ = "";
 
 function buildDevList(){
   document.getElementById("devList").innerHTML = DEVICES.map(d=>{
     const lbl = d.id==="all" ? t("all_dev") : d.label;
-    const cnt = d.id==="all" ? THEMES.length : THEMES.filter(th=>th.device===d.id).length;
+    const cnt = d.id==="all" ? THEMES.length : THEMES.filter(th=>{
+      const devices = Array.isArray(th.device) ? th.device : [th.device];
+      return devices.includes(d.id);
+    }).length;
     return `<button class="dev-btn${activeDev===d.id?" on":""}" onclick="pickDev('${d.id}')">
       <span class="dev-ico">${d.icon}</span>
       <span>${lbl}</span>
@@ -282,7 +303,20 @@ function buildDevList(){
   }).join("");
 }
 
+function buildTagList(){
+  document.getElementById("tagList").innerHTML = CATEGORIES.map(c=>{
+    const lbl = c.id==="all" ? t("all_cat") : c.label;
+    const cnt = c.id==="all" ? THEMES.length : THEMES.filter(th=>th.category===c.id).length;
+    return `<button class="tag-btn${activeTag===c.id?" on":""}" onclick="pickTag('${c.id}')">
+      <span class="tag-ico">${c.icon}</span>
+      <span>${lbl}</span>
+      <span class="tag-cnt">${cnt}</span>
+    </button>`;
+  }).join("");
+}
+
 function pickDev(id){ activeDev=id; buildDevList(); render(); }
+function pickTag(id){ activeTag=id; buildTagList(); render(); }
 
 // ════════════════════════════════════════════════════
 //  STATS
@@ -297,10 +331,14 @@ function updateStats(){
 // ════════════════════════════════════════════════════
 function getFiltered(){
   let r = [...THEMES];
-  if(activeDev!=="all") r=r.filter(th=>th.device===activeDev);
+  if(activeDev!=="all") r=r.filter(th=>{
+    const devices = Array.isArray(th.device) ? th.device : [th.device];
+    return devices.includes(activeDev);
+  });
+  if(activeTag!=="all") r=r.filter(th=>th.category===activeTag);
   if(searchQ.trim()){
     const q=searchQ.toLowerCase();
-    r=r.filter(th=>[th.name,th.description,th.description_ru,th.author,th.device,...(th.tags||[])].some(s=>s&&s.toLowerCase().includes(q)));
+    r=r.filter(th=>[th.name,th.description,th.description_ru,th.author,...(Array.isArray(th.device)?th.device:[th.device]),...(th.tags||[])].some(s=>s&&s.toLowerCase().includes(q)));
   }
   const s=document.getElementById("sortSel").value;
   if(s==="newest") r.sort((a,b)=>(b.date||"").localeCompare(a.date||""));
@@ -319,7 +357,12 @@ function fmtDate(d){
 function render(){
   // title
   const titleEl = document.getElementById("cTitle");
-  titleEl.textContent = activeDev==="all" ? t("all_dev") : (DEVICES.find(d=>d.id===activeDev)||{}).label||activeDev;
+  let titleText = activeDev==="all" ? t("all_dev") : (DEVICES.find(d=>d.id===activeDev)||{}).label||activeDev;
+  if(activeTag!=="all"){
+    const catLabel = CATEGORIES.find(c=>c.id===activeTag)?.label || activeTag;
+    titleText = titleText + " • " + catLabel;
+  }
+  titleEl.textContent = titleText;
 
   const grid = document.getElementById("grid");
   const f = getFiltered();
@@ -332,13 +375,15 @@ function render(){
   grid.innerHTML = f.map((th,i)=>{
     const desc = (lang==="ru" && th.description_ru) ? th.description_ru : (th.description||"");
     const tags = (th.tags||[]).slice(0,3).map(tg=>`<span class="chip ct">${esc(tg)}</span>`).join("");
+    const devices = Array.isArray(th.device) ? th.device : [th.device];
+    const deviceBadges = devices.map(d=>`<span class="t-dev-badge">${esc(d)}</span>`).join("");
     const imgHtml = th.screenshot
       ? `<img class="t-img" src="${esc(th.screenshot)}" alt="${esc(th.name)}" loading="lazy" onclick="openLbox('${th.screenshot.replace(/'/g,"%27")}')">`
       : `<div class="t-no-img">🎨</div>`;
     return `<div class="tcard" style="animation-delay:${i*.05}s">
       <div class="t-img-wrap">
         ${imgHtml}
-        <span class="t-dev-badge">${esc(th.device||"?")}</span>
+        ${deviceBadges}
       </div>
       <div class="t-body">
         <div class="t-name">${esc(th.name)}</div>
@@ -429,6 +474,7 @@ async function loadThemes(){
 // ════════════════════════════════════════════════════
 applyI18n();
 buildDevList();
+buildTagList();
 loadThemes();
 </script>
 </body>

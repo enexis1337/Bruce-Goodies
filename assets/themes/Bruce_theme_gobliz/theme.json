@@ -1,0 +1,13 @@
+{
+  "name": "Bruce Shark Theme",
+  "description": "Shark inspired theme for Bruce",
+  "description_ru": "Тема для Bruce, вдохновленная акулами",
+  "author": "GobliZ",
+  "version": "v1.0",
+  "device": ["CYD", "Core", "T-Deck"],
+  "category": "Theme",
+  "screenshot": "https://raw.githubusercontent.com/enexis1337/Bruce-Goodies/refs/heads/main/assets/themes/Bruce_theme_gobliz/sharktheme.png",
+  "download_url": "https://github.com/enexis1337/Bruce-Goodies/raw/refs/heads/main/assets/themes/Bruce_theme_gobliz/Bruce_Theme_by_GobliZ.zip",
+  "date": "2025-07-31",
+  "tags": ["Animals"]
+}

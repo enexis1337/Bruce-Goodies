@@ -1,0 +1,13 @@
+{
+  "name": "Mad Shark",
+  "description": "Fork of Flipper themes",
+  "description_ru": "Fork of Flipper themes",
+  "author": "CrowKVRA",
+  "version": "v1.0",
+  "device": ["T-Embed", "Smoochiee", "RF Reaper"],
+  "category": "Theme",
+  "screenshot": "https://raw.githubusercontent.com/enexis1337/Bruce-Goodies/refs/heads/main/assets/themes/BruceCrowV2O/crow_theme.png",
+  "download_url": "https://github.com/enexis1337/Bruce-Goodies/raw/refs/heads/main/assets/themes/BruceCrowV2O/BruceCrowV2O.zip",
+  "date": "2025-06-31",
+  "tags": ["Flipper-like"]
+}
