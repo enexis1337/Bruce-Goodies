@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruce Goodies</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Jura:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d12;--panel:#13131c;--card:#1a1a28;--cardh:#1f1f30;
+  --pd:#2d1b69;--pm:#4c2a9e;--pb:#7c3aed;--pg:#9d60ff;--pa:#c084fc;--pl:#e9d5ff;
+  --gd:#2a2a3a;--gm:#4a4a60;--gl:#8888aa;--gt:#b0b0cc;--wh:#f0eeff;
+  --grn:#34d399;--cyn:#22d3ee;
+  --bdr:rgba(124,58,237,.25);--bdrb:rgba(157,96,255,.5);
+  --glow:0 0 20px rgba(124,58,237,.3);--glowb:0 0 30px rgba(157,96,255,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--gt);font-family:'Rajdhani',sans-serif;font-size:16px;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% -10%,rgba(76,42,158,.18) 0,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 110%,rgba(45,27,105,.15) 0,transparent 60%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;z-index:1}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(13,13,18,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:0 2rem}
+.hdr{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;height:68px}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.logo img{width:40px;height:40px;border-radius:10px;box-shadow:var(--glow);display:block}
+.logo-text{display:flex;flex-direction:column;gap:1px}
+.logo-name{font-family:'Orbitron',monospace;font-size:.95rem;font-weight:700;color:var(--wh);letter-spacing:.05em;line-height:1.1}
+.logo-sub{font-size:.58rem;color:var(--pa);letter-spacing:.18em;text-transform:uppercase}
+.h-search{flex:1;max-width:380px;position:relative}
+.h-search input{width:100%;background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:8px 14px 8px 38px;color:var(--wh);font-family:'Rajdhani',sans-serif;font-size:.93rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.h-search input:focus{border-color:var(--pb);box-shadow:0 0 0 3px rgba(124,58,237,.13)}
+.h-search input::placeholder{color:var(--gm)}
+.h-search .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--gm);font-size:13px;pointer-events:none}
+.h-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.lang-btn{background:var(--card);border:1px solid var(--bdr);border-radius:6px;padding:5px 11px;color:var(--gl);font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:all .2s}
+.lang-btn:hover,.lang-btn.on{background:var(--pd);border-color:var(--pb);color:var(--wh)}
+.btn-submit{background:linear-gradient(135deg,var(--pb),var(--pm));border:none;border-radius:8px;padding:8px 18px;color:var(--wh);font-family:'Rajdhani',sans-serif;font-size:.93rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s;box-shadow:0 4px 15px rgba(124,58,237,.3);text-decoration:none;white-space:nowrap}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.5)}
+
+/* HERO */
+.hero{position:relative;z-index:2;text-align:center;padding:56px 2rem 36px}
+.hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.9rem,5vw,3.4rem);font-weight:900;color:var(--wh);letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(90deg,var(--pb),var(--pa));-webkit-background-clip:text;background-clip:text}
+.hero p{color:var(--gl);font-size:1.05rem;max-width:540px;margin:0 auto 28px;line-height:1.6}
+.stats{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.stat-v{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:700;color:var(--pg);display:block}
+.stat-l{font-size:.75rem;color:var(--gm);text-transform:uppercase;letter-spacing:.1em}
+
+/* LAYOUT */
+.main{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:24px 2rem 5rem;display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:82px;background:var(--panel);border:1px solid var(--bdr);border-radius:12px;overflow:hidden}
+.sb-hdr{padding:13px 16px;border-bottom:1px solid var(--bdr);font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--pa);text-transform:uppercase;letter-spacing:.16em}
+.dev-list{padding:8px}
+.dev-btn{width:100%;display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;border:none;background:transparent;color:var(--gt);font-family:'Rajdhani',sans-serif;font-size:.93rem;font-weight:500;cursor:pointer;transition:all .17s;text-align:left;position:relative}
+.dev-btn:hover{background:rgba(124,58,237,.12);color:var(--wh)}
+.dev-btn.on{background:rgba(124,58,237,.2);color:var(--wh);border:1px solid rgba(124,58,237,.35)}
+.dev-btn.on::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:3px;background:var(--pb);border-radius:0 2px 2px 0}
+.dev-ico{width:27px;height:27px;background:var(--card);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border:1px solid var(--bdr)}
+.dev-btn.on .dev-ico{background:var(--pd);border-color:var(--pb)}
+.dev-cnt{margin-left:auto;background:var(--gd);color:var(--gl);font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:2px 7px;border-radius:10px;flex-shrink:0}
+.dev-btn.on .dev-cnt{background:var(--pd);color:var(--pa)}
+
+/* CONTENT */
+.content{min-width:0}
+.c-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+.c-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--wh)}
+.sort-sel{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:7px 13px;color:var(--gt);font-family:'Rajdhani',sans-serif;font-size:.88rem;outline:none;cursor:pointer;transition:border-color .2s}
+.sort-sel:focus{border-color:var(--pb)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tcard{background:var(--card);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:all .22s;position:relative;animation:ci .35s ease forwards;opacity:0;transform:translateY(10px)}
+@keyframes ci{to{opacity:1;transform:none}}
+.tcard:hover{border-color:var(--bdrb);transform:translateY(-3px);box-shadow:0 10px 36px rgba(124,58,237,.18)}
+.t-img-wrap{position:relative;overflow:hidden;aspect-ratio:5/3;background:var(--gd)}
+.t-img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:transform .3s}
+.tcard:hover .t-img{transform:scale(1.03)}
+.t-no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--gm)}
+.t-dev-badge{position:absolute;top:10px;right:10px;background:rgba(13,13,18,.82);backdrop-filter:blur(6px);border:1px solid var(--bdrb);border-radius:6px;padding:3px 9px;font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--pa);pointer-events:none}
+.t-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50px;background:linear-gradient(transparent,var(--card));pointer-events:none}
+.t-body{padding:14px 16px 16px}
+.t-name{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;color:var(--wh);margin-bottom:5px}
+.t-desc{font-size:.85rem;color:var(--gl);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;min-height:2.4em}
+.t-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+.chip{font-family:'Share Tech Mono',monospace;font-size:.68rem;padding:2px 8px;border-radius:4px;border:1px solid}
+.ca{background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.3);color:var(--cyn)}
+.cv{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3);color:var(--grn)}
+.ct{background:rgba(74,74,96,.3);border-color:rgba(74,74,96,.6);color:var(--gl)}
+.t-foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.t-date{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--gm)}
+.dl-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 15px;background:linear-gradient(135deg,var(--pb),var(--pm));border:none;border-radius:7px;color:var(--wh);font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 3px 10px rgba(124,58,237,.28)}
+.dl-btn:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(124,58,237,.5)}
+
+/* EMPTY / ERROR / LOADING */
+.state-box{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--gm)}
+.state-box .ico{font-size:2.8rem;margin-bottom:12px;opacity:.45}
+.state-box p{font-size:1.05rem}
+.state-box .hint{font-size:.85rem;margin-top:6px}
+.spinner{width:36px;height:36px;border:3px solid var(--bdr);border-top-color:var(--pb);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* HOW-TO removed */
+
+/* Russian font override */
+body.ru, body.ru .hero p, body.ru .t-desc, body.ru .howto p,
+body.ru .dev-btn, body.ru .btn-submit, body.ru .lang-btn,
+body.ru .dl-btn, body.ru .sort-sel, body.ru .h-search input {
+  font-family: 'Jura', sans-serif;
+}
+
+/* LIGHTBOX */
+.lbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center;padding:20px}
+.lbox.open{display:flex}
+.lbox img{max-width:min(900px,100%);max-height:80vh;border-radius:10px;box-shadow:0 0 60px rgba(0,0,0,.7);animation:lbi .2s ease}
+@keyframes lbi{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:none}}
+.lbox-close{position:fixed;top:18px;right:22px;background:var(--card);border:1px solid var(--bdrb);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--gt);cursor:pointer;font-size:1rem;transition:all .2s}
+.lbox-close:hover{background:var(--gd);color:var(--wh)}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--bdr);padding:22px 2rem;text-align:center;color:var(--gm);font-size:.83rem}
+footer a{color:var(--pa);text-decoration:none}
+footer a:hover{color:var(--pl)}
+
+@media(max-width:900px){.main{grid-template-columns:1fr}.sidebar{position:static}.dev-list{display:flex;flex-wrap:wrap;gap:6px;padding:10px}.dev-btn{width:auto}}
+@media(max-width:600px){.h-search{display:none}.grid{grid-template-columns:1fr}.hero{padding:36px 1rem 22px}.stats{gap:18px}}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--pm);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--pb)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="#">
+      <img src="src/logo.png" alt="Bruce Goodies">
+      <div class="logo-text">
+        <span class="logo-name">BRUCE GOODIES</span>
+        <span class="logo-sub" data-i18n="subtitle">Themes &amp; Resources</span>
+      </div>
+    </a>
+    <div class="h-search">
+      <span class="si">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search themes…">
+    </div>
+    <div class="h-actions">
+      <button class="lang-btn on" onclick="setLang('en')" id="lEn">EN</button>
+      <button class="lang-btn"    onclick="setLang('ru')" id="lRu">RU</button>
+      <a class="btn-submit" href="https://google.com" target="_blank" rel="noopener">
+        <span>＋</span><span data-i18n="submit_btn">Submit Theme</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1><em>Bruce</em> Goodies</h1>
+  <p data-i18n="hero_desc">Community themes, schemes, SD files and boot animations for Bruce firmware devices</p>
+  <div class="stats">
+    <div><span class="stat-v" id="stTotal">0</span><span class="stat-l" data-i18n="s_themes">Themes</span></div>
+    <div><span class="stat-v">9</span><span class="stat-l" data-i18n="s_devices">Devices</span></div>
+    <div><span class="stat-v" id="stAuthors">0</span><span class="stat-l" data-i18n="s_authors">Authors</span></div>
+  </div>
+</section>
+
+<div class="main">
+  <aside class="sidebar">
+    <div class="sb-hdr" data-i18n="filter_dev">// DEVICE</div>
+    <div class="dev-list" id="devList"></div>
+  </aside>
+  <div class="content">
+    <div class="c-hdr">
+      <div class="c-title" id="cTitle"></div>
+      <select class="sort-sel" id="sortSel" onchange="render()">
+        <option value="newest" data-i18n="sort_new">Newest</option>
+        <option value="oldest" data-i18n="sort_old">Oldest</option>
+        <option value="name"   data-i18n="sort_az">Name A–Z</option>
+      </select>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<div class="lbox" id="lbox" onclick="closeLbox(event)">
+  <button class="lbox-close" onclick="closeLbox()">✕</button>
+  <img id="lboxImg" src="" alt="">
+</div>
+
+<footer>
+  <p>Bruce Goodies &nbsp;·&nbsp; <a href="https://github.com/pr3y/Bruce" target="_blank">Bruce Firmware</a> &nbsp;·&nbsp; <span data-i18n="footer_txt">Community-driven theme collection</span></p>
+</footer>
+
+<script>
+// ════════════════════════════════════════════════════
+//  THEMES — loaded from themes.manifest.json + individual theme.json files
+// ════════════════════════════════════════════════════
+let THEMES = [];
+
+// ════════════════════════════════════════════════════
+//  i18n
+// ════════════════════════════════════════════════════
+const TR = {
+  en:{
+    subtitle:"Themes & Resources",
+    hero_desc:"Community themes, schemes, SD files and boot animations for Bruce firmware devices",
+    s_themes:"Themes", s_devices:"Devices", s_authors:"Authors",
+    filter_dev:"// DEVICE", all_dev:"All Devices",
+    sort_new:"Newest", sort_old:"Oldest", sort_az:"Name A–Z",
+    no_themes:"No themes found", no_hint:"Try a different device filter.",
+    download:"Download",
+    submit_btn:"Submit Theme",
+    footer_txt:"Community-driven theme collection",
+    howto_title:"📂 HOW TO ADD A THEME",
+    howto_p1:"To add a theme, push a new entry into the THEMES array in index.html:",
+    howto_p2:"Each theme is a self-contained JS object — no server required."
+  },
+  ru:{
+    subtitle:"Темы и ресурсы",
+    hero_desc:"Темы, схемы, SD-файлы и анимации загрузки от сообщества для устройств на прошивке Bruce",
+    s_themes:"Тем", s_devices:"Устройств", s_authors:"Авторов",
+    filter_dev:"// УСТРОЙСТВО", all_dev:"Все устройства",
+    sort_new:"Сначала новые", sort_old:"Сначала старые", sort_az:"По имени А–Я",
+    no_themes:"Темы не найдены", no_hint:"Попробуйте другой фильтр устройства.",
+    download:"Скачать",
+    submit_btn:"Добавить тему",
+    footer_txt:"Коллекция тем от сообщества Bruce",
+    howto_title:"📂 КАК ДОБАВИТЬ ТЕМУ",
+    howto_p1:"Чтобы добавить тему, добавьте новый объект в массив THEMES в index.html:",
+    howto_p2:"Каждая тема — самодостаточный JS-объект, сервер не нужен."
+  }
+};
+let lang = "en";
+const t = k => TR[lang][k] || TR.en[k] || k;
+
+function setLang(l){
+  lang = l;
+  document.body.classList.toggle("ru", l === "ru");
+  document.getElementById("lEn").classList.toggle("on", l==="en");
+  document.getElementById("lRu").classList.toggle("on", l==="ru");
+  applyI18n(); buildDevList(); render();
+}
+function applyI18n(){
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n");
+    if(TR[lang][k]) el.textContent=TR[lang][k];
+  });
+  document.getElementById("searchInput").placeholder = lang==="ru"?"Поиск тем…":"Search themes…";
+  document.querySelectorAll("#sortSel option[data-i18n]").forEach(o=>{
+    const k=o.getAttribute("data-i18n");
+    if(TR[lang][k]) o.textContent=TR[lang][k];
+  });
+}
+
+// ════════════════════════════════════════════════════
+//  DEVICES
+// ════════════════════════════════════════════════════
+const DEVICES = [
+  {id:"all",       icon:"📦"},
+  {id:"StickC",    icon:"🟣", label:"M5StickC"},
+  {id:"Cardputer", icon:"💻", label:"Cardputer"},
+  {id:"T-Embed",   icon:"📻", label:"T-Embed"},
+  {id:"CYD",       icon:"🖥️", label:"CYD"},
+  {id:"Core",      icon:"⬛", label:"M5Core"},
+  {id:"T-Deck",    icon:"📱", label:"T-Deck"},
+  {id:"T-LoRa-Pager",icon:"📡",label:"T-LoRa-Pager"},
+  {id:"Smoochiee", icon:"💜", label:"Smoochiee"},
+  {id:"RF-Reaper", icon:"📶", label:"RF Reaper"},
+];
+
+let activeDev = "all", searchQ = "";
+
+function buildDevList(){
+  document.getElementById("devList").innerHTML = DEVICES.map(d=>{
+    const lbl = d.id==="all" ? t("all_dev") : d.label;
+    const cnt = d.id==="all" ? THEMES.length : THEMES.filter(th=>th.device===d.id).length;
+    return `<button class="dev-btn${activeDev===d.id?" on":""}" onclick="pickDev('${d.id}')">
+      <span class="dev-ico">${d.icon}</span>
+      <span>${lbl}</span>
+      <span class="dev-cnt">${cnt}</span>
+    </button>`;
+  }).join("");
+}
+
+function pickDev(id){ activeDev=id; buildDevList(); render(); }
+
+// ════════════════════════════════════════════════════
+//  STATS
+// ════════════════════════════════════════════════════
+function updateStats(){
+  document.getElementById("stTotal").textContent = THEMES.length;
+  document.getElementById("stAuthors").textContent = new Set(THEMES.map(t=>t.author).filter(Boolean)).size;
+}
+
+// ════════════════════════════════════════════════════
+//  RENDER
+// ════════════════════════════════════════════════════
+function getFiltered(){
+  let r = [...THEMES];
+  if(activeDev!=="all") r=r.filter(th=>th.device===activeDev);
+  if(searchQ.trim()){
+    const q=searchQ.toLowerCase();
+    r=r.filter(th=>[th.name,th.description,th.description_ru,th.author,th.device,...(th.tags||[])].some(s=>s&&s.toLowerCase().includes(q)));
+  }
+  const s=document.getElementById("sortSel").value;
+  if(s==="newest") r.sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  else if(s==="oldest") r.sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+  else r.sort((a,b)=>a.name.localeCompare(b.name));
+  return r;
+}
+
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function fmtDate(d){
+  if(!d)return "";
+  try{ return new Date(d).toLocaleDateString(lang==="ru"?"ru-RU":"en-US",{year:"numeric",month:"short",day:"numeric"}); }
+  catch{ return d; }
+}
+
+function render(){
+  // title
+  const titleEl = document.getElementById("cTitle");
+  titleEl.textContent = activeDev==="all" ? t("all_dev") : (DEVICES.find(d=>d.id===activeDev)||{}).label||activeDev;
+
+  const grid = document.getElementById("grid");
+  const f = getFiltered();
+
+  if(!f.length){
+    grid.innerHTML=`<div class="state-box"><div class="ico">🔍</div><p>${t("no_themes")}</p><p class="hint">${t("no_hint")}</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = f.map((th,i)=>{
+    const desc = (lang==="ru" && th.description_ru) ? th.description_ru : (th.description||"");
+    const tags = (th.tags||[]).slice(0,3).map(tg=>`<span class="chip ct">${esc(tg)}</span>`).join("");
+    const imgHtml = th.screenshot
+      ? `<img class="t-img" src="${esc(th.screenshot)}" alt="${esc(th.name)}" loading="lazy" onclick="openLbox('${th.screenshot.replace(/'/g,"%27")}')">`
+      : `<div class="t-no-img">🎨</div>`;
+    return `<div class="tcard" style="animation-delay:${i*.05}s">
+      <div class="t-img-wrap">
+        ${imgHtml}
+        <span class="t-dev-badge">${esc(th.device||"?")}</span>
+      </div>
+      <div class="t-body">
+        <div class="t-name">${esc(th.name)}</div>
+        <div class="t-desc">${esc(desc)}</div>
+        <div class="t-meta">
+          ${th.author?`<span class="chip ca">@${esc(th.author)}</span>`:""}
+          ${th.version?`<span class="chip cv">${esc(th.version)}</span>`:""}
+          ${tags}
+        </div>
+        <div class="t-foot">
+          <span class="t-date">${fmtDate(th.date)}</span>
+          <a class="dl-btn" href="${esc(th.download_url||"#")}" target="_blank" rel="noopener">⬇ ${t("download")}</a>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ════════════════════════════════════════════════════
+//  LIGHTBOX
+// ════════════════════════════════════════════════════
+function openLbox(src){
+  document.getElementById("lboxImg").src=src;
+  document.getElementById("lbox").classList.add("open");
+}
+function closeLbox(e){
+  if(!e||e.target===document.getElementById("lbox")||e.currentTarget.classList.contains("lbox-close"))
+    document.getElementById("lbox").classList.remove("open");
+}
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") document.getElementById("lbox").classList.remove("open"); });
+
+// ════════════════════════════════════════════════════
+//  SEARCH
+// ════════════════════════════════════════════════════
+document.getElementById("searchInput").addEventListener("input", e=>{ searchQ=e.target.value; render(); });
+
+// ════════════════════════════════════════════════════
+//  FETCH LOADER
+// ════════════════════════════════════════════════════
+function showLoading(){
+  document.getElementById("grid").innerHTML =
+    `<div class="state-box"><div class="spinner"></div><p data-i18n="loading">${t("loading")}</p></div>`;
+}
+
+async function loadThemes(){
+  showLoading();
+  try {
+    // 1. load manifest
+    const mRes = await fetch("themes.manifest.json");
+    if(!mRes.ok) throw new Error("Cannot load themes.manifest.json — HTTP " + mRes.status);
+    const paths = await mRes.json();
+
+    // 2. load every theme.json in parallel
+    const results = await Promise.allSettled(
+      paths.map(p =>
+        fetch(p)
+          .then(r => { if(!r.ok) throw new Error(p + " HTTP " + r.status); return r.json(); })
+          .then(data => ({ ...data, _src: p }))
+      )
+    );
+
+    THEMES = results
+      .filter(r => r.status === "fulfilled")
+      .map(r => r.value);
+
+    results
+      .filter(r => r.status === "rejected")
+      .forEach(r => console.warn("Failed to load theme:", r.reason));
+
+  } catch(err) {
+    console.error(err);
+    document.getElementById("grid").innerHTML =
+      `<div class="state-box">
+        <div class="ico">⚠️</div>
+        <p>${err.message}</p>
+        <p class="hint">Make sure themes.manifest.json exists and the site is served over HTTP(S).</p>
+      </div>`;
+    return;
+  }
+
+  buildDevList();
+  render();
+  updateStats();
+}
+
+// ════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════
+applyI18n();
+buildDevList();
+loadThemes();
+</script>
+</body>
+</html>

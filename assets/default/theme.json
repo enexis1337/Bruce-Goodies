@@ -1,0 +1,12 @@
+{
+  "name": "Example Theme",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  "description_ru": "Съешь ещё этих мягких французских булок, да выпей чаю.",
+  "author": "enexis",
+  "version": "v1.0",
+  "device": "Core",
+  "screenshot": "https://placehold.co/400x240/1a1000/ffaa00?text=Placeholder",
+  "download_url": "https://github.com/pr3y/Bruce/releases",
+  "date": "2024-10-08",
+  "tags": ["retro", "amber", "classic", "warm"]
+}
