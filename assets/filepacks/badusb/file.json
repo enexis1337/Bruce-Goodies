@@ -1,0 +1,13 @@
+{
+  "name": "BadUSB File Pack",
+  "description": "A collection of files for BadUSB attacks by community",
+  "description_ru": "Набор файлов для атак BadUSB, собранный сообществом",
+  "author": "BruceGoodies",
+  "version": "v1.0",
+  "device": ["StickC", "Cardputer", "T-Embed", "Smoochiee", "RF-Reaper", "CYD", "Core", "T-Deck", "T-LoRa Pager"],
+  "category": "Files",
+  "screenshot": "https://placehold.co/400x240/1b0028/6b009d?text=BadUSB&font=montserrat",
+  "download_url": "",
+  "date": "2026-05-13",
+  "tags": ["BadUSB", "Files"]
+}

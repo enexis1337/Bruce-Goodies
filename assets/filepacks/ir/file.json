@@ -1,0 +1,13 @@
+{
+  "name": "Infrared File Pack",
+  "description": "A collection of files for infrared attacks by community",
+  "description_ru": "Набор файлов для атак инфракрасным светом, собранный сообществом",
+  "author": "BruceGoodies",
+  "version": "v1.0",
+  "device": ["StickC", "Cardputer", "T-Embed", "Smoochiee", "RF-Reaper", "CYD", "Core", "T-Deck", "T-LoRa Pager"],
+  "category": "Files",
+  "screenshot": "https://placehold.co/400x240/1b0028/6b009d?text=Infrared&font=montserrat",
+  "download_url": "",
+  "date": "2026-05-13",
+  "tags": ["Infrared", "Files"]
+}
